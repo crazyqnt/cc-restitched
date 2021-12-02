@@ -8,9 +8,11 @@ package dan200.computercraft.shared.util;
 
 import com.google.common.collect.MapMaker;
 import dan200.computercraft.shared.common.TileGeneric;
+import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.OrderedTick;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -50,11 +52,12 @@ public final class TickScheduler
 
             if( world != null && pos != null && world.isChunkLoaded( pos ) && world.getBlockEntity( pos ) == tile )
             {
-                world.getBlockTickScheduler()
-                    .schedule( pos,
+                OrderedTick<Block> tick = OrderedTick.create(tile.getCachedState().getBlock(), pos);
+                world.getBlockTickScheduler().scheduleTick(tick);
+                    /*.schedule( pos,
                         tile.getCachedState()
                             .getBlock(),
-                        0 );
+                        0 );*/
             }
         }
     }

@@ -297,6 +297,10 @@ public class TileMonitor extends TileGeneric implements IPeripheralTile
     {
         super.readNbt( nbt );
 
+        if (nbt.contains("___clientDescription")) {
+            return; // for client only!
+        }
+
         xIndex = nbt.getInt( NBT_X );
         yIndex = nbt.getInt( NBT_Y );
         width = nbt.getInt( NBT_WIDTH );
@@ -307,13 +311,13 @@ public class TileMonitor extends TileGeneric implements IPeripheralTile
 
     @Nonnull
     @Override
-    public NbtCompound writeNbt( NbtCompound nbt )
+    public void writeNbt( NbtCompound nbt )
     {
         nbt.putInt( NBT_X, xIndex );
         nbt.putInt( NBT_Y, yIndex );
         nbt.putInt( NBT_WIDTH, width );
         nbt.putInt( NBT_HEIGHT, height );
-        return super.writeNbt( nbt );
+        super.writeNbt( nbt );
     }
 
     //    @Override //TODO: make BlockEntityRenderer work with this, i guess.

@@ -170,6 +170,10 @@ public final class TilePrinter extends TileGeneric implements DefaultSidedInvent
     {
         super.readNbt( nbt );
 
+        if (nbt.contains("___clientDescription")) {
+            return; // for client only!
+        }
+
         customName = nbt.contains( NBT_NAME ) ? Text.Serializer.fromJson( nbt.getString( NBT_NAME ) ) : null;
 
         // Read page
@@ -186,7 +190,7 @@ public final class TilePrinter extends TileGeneric implements DefaultSidedInvent
 
     @Nonnull
     @Override
-    public NbtCompound writeNbt( @Nonnull NbtCompound nbt )
+    public void writeNbt( @Nonnull NbtCompound nbt )
     {
         if( customName != null )
         {
@@ -204,7 +208,7 @@ public final class TilePrinter extends TileGeneric implements DefaultSidedInvent
         // Write inventory
         Inventories.writeNbt( nbt, inventory );
 
-        return super.writeNbt( nbt );
+        super.writeNbt( nbt );
     }
 
     boolean isPrinting()

@@ -11,6 +11,7 @@ import com.mojang.brigadier.tree.CommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dan200.computercraft.ComputerCraft;
 import dan200.computercraft.api.lua.*;
+import dan200.computercraft.fabric.mixin.MixinBlockEntity;
 import dan200.computercraft.shared.computer.blocks.TileCommandComputer;
 import dan200.computercraft.shared.util.NBTUtil;
 import net.minecraft.block.Block;
@@ -252,7 +253,9 @@ public class CommandAPI implements ILuaAPI
         BlockEntity tile = world.getBlockEntity( pos );
         if( tile != null )
         {
-            table.put( "nbt", NBTUtil.toLua( tile.writeNbt( new NbtCompound() ) ) );
+            NbtCompound compound = new NbtCompound();
+            ((MixinBlockEntity) tile).invokeWriteNbt(compound);
+            table.put( "nbt", NBTUtil.toLua( compound ) );
         }
 
         return table;

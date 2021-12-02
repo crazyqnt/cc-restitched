@@ -71,7 +71,7 @@ public final class ItemPrintoutRenderer extends ItemMapLikeRenderer
         transform.translate( (max - width) / 2.0, (max - height) / 2.0, 0.0 );
 
         Matrix4f matrix = transform.peek()
-            .getModel();
+            .getPositionMatrix();
         drawBorder( matrix, render, 0, 0, -0.01f, 0, pages, book, light );
         drawText( matrix, render, X_TEXT_MARGIN, Y_TEXT_MARGIN, 0, light, ItemPrintout.getText( stack ), ItemPrintout.getColours( stack ) );
     }

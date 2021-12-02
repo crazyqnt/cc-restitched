@@ -111,6 +111,11 @@ public final class TileDiskDrive extends TileGeneric implements DefaultInventory
     public void readNbt( @Nonnull NbtCompound nbt )
     {
         super.readNbt( nbt );
+
+        if (nbt.contains("___clientDescription")) {
+            return; // for client only!
+        }
+
         customName = nbt.contains( NBT_NAME ) ? Text.Serializer.fromJson( nbt.getString( NBT_NAME ) ) : null;
         if( nbt.contains( NBT_ITEM ) )
         {
@@ -122,7 +127,7 @@ public final class TileDiskDrive extends TileGeneric implements DefaultInventory
 
     @Nonnull
     @Override
-    public NbtCompound writeNbt( @Nonnull NbtCompound nbt )
+    public void writeNbt( @Nonnull NbtCompound nbt )
     {
         if( customName != null )
         {
@@ -135,7 +140,7 @@ public final class TileDiskDrive extends TileGeneric implements DefaultInventory
             diskStack.writeNbt( item );
             nbt.put( NBT_ITEM, item );
         }
-        return super.writeNbt( nbt );
+        super.writeNbt( nbt );
     }
 
     @Override

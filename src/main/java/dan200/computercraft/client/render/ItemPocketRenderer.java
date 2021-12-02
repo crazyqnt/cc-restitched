@@ -75,7 +75,7 @@ public final class ItemPocketRenderer extends ItemMapLikeRenderer
         int frameColour = item.getColour( stack );
 
         Matrix4f matrix = transform.peek()
-            .getModel();
+            .getPositionMatrix();
         renderFrame( matrix, render, family, frameColour, light, width, height );
 
         // Render the light
@@ -92,7 +92,7 @@ public final class ItemPocketRenderer extends ItemMapLikeRenderer
                 matrix, render.getBuffer( RenderTypes.TERMINAL_WITHOUT_DEPTH ),
                 MARGIN, MARGIN, terminal, !computer.isColour(), MARGIN, MARGIN, MARGIN, MARGIN
             );
-            FixedWidthFontRenderer.drawBlocker( transform.peek().getModel(), render, 0, 0, width, height );
+            FixedWidthFontRenderer.drawBlocker( transform.peek().getPositionMatrix(), render, 0, 0, width, height );
 
         }
         else

@@ -349,7 +349,7 @@ public class WidgetTerminal extends ClickableWidget
     public void render( @Nonnull MatrixStack transform, int mouseX, int mouseY, float partialTicks )
     {
         if( !visible ) return;
-        Matrix4f matrix = transform.peek().getModel();
+        Matrix4f matrix = transform.peek().getPositionMatrix();
         Terminal terminal = computer.getTerminal();
         if( terminal != null )
         {

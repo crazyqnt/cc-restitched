@@ -105,7 +105,7 @@ public class TileEntityMonitorRenderer implements BlockEntityRenderer<TileMonito
             transform.push();
             transform.scale( (float) xScale, (float) -yScale, 1.0f );
 
-            Matrix4f matrix = transform.peek().getModel();
+            Matrix4f matrix = transform.peek().getPositionMatrix();
 
             renderTerminal( renderer, matrix, originTerminal, (float) (MARGIN / xScale), (float) (MARGIN / yScale) );
 
@@ -117,7 +117,7 @@ public class TileEntityMonitorRenderer implements BlockEntityRenderer<TileMonito
 
             // Draw the background blocker
             FixedWidthFontRenderer.drawBlocker(
-                transform.peek().getModel(), renderer,
+                transform.peek().getPositionMatrix(), renderer,
                 -MARGIN, MARGIN,
                 (float) (xSize + 2 * MARGIN), (float) -(ySize + MARGIN * 2)
             );
@@ -127,7 +127,7 @@ public class TileEntityMonitorRenderer implements BlockEntityRenderer<TileMonito
         else
         {
             FixedWidthFontRenderer.drawEmptyTerminal( transform.peek()
-                    .getModel(),
+                    .getPositionMatrix(),
                 renderer,
                 -MARGIN,
                 MARGIN,

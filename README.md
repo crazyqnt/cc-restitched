@@ -1,3 +1,15 @@
+## This is a hastily created port of CC:Restitched to MC 1.18. Use at your own risk.
+
+## Changes in this fork:
+
+- Implemented a redneck replacement for the missing fabric-networking-blockentity API
+- Removed dependency on modmenu
+- 1.18 adjustments:
+  - implemented new tick scheduling
+  - changed MatrixStack.Entry method name
+  - implemented Mixin to access BlockEntity.writeNBT
+  - other small stuff
+
 <img src="logo.png" alt="CC: Restitched" width="100%"/>
 
 [![Current build status](https://github.com/cc-tweaked/cc-restitched/workflows/Build/badge.svg)](https://github.com/cc-tweaked/cc-restitched/actions "Current build status")

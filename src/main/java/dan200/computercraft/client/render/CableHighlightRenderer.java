@@ -57,8 +57,8 @@ public final class CableHighlightRenderer
         double yOffset = pos.getY() - cameraPos.getY();
         double zOffset = pos.getZ() - cameraPos.getZ();
         Matrix4f matrix4f = stack.peek()
-            .getModel();
-        Matrix3f normal = stack.peek().getNormal();
+            .getPositionMatrix();
+        Matrix3f normal = stack.peek().getNormalMatrix();
         shape.forEachEdge( ( x1, y1, z1, x2, y2, z2 ) -> {
             float xDelta = (float) (x2 - x1);
             float yDelta = (float) (y2 - y1);

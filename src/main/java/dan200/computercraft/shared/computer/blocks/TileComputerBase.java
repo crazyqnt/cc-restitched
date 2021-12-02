@@ -324,6 +324,10 @@ public abstract class TileComputerBase extends TileGeneric implements IComputerT
     {
         super.readNbt( nbt );
 
+        if (nbt.contains("___clientDescription")) {
+            return; // for client only!
+        }
+
         // Load ID, label and power state
         computerID = nbt.contains( NBT_ID ) ? nbt.getInt( NBT_ID ) : -1;
         label = nbt.contains( NBT_LABEL ) ? nbt.getString( NBT_LABEL ) : null;
@@ -332,7 +336,7 @@ public abstract class TileComputerBase extends TileGeneric implements IComputerT
 
     @Nonnull
     @Override
-    public NbtCompound writeNbt( @Nonnull NbtCompound nbt )
+    public void writeNbt( @Nonnull NbtCompound nbt )
     {
         // Save ID, label and power state
         if( computerID >= 0 )
@@ -344,7 +348,7 @@ public abstract class TileComputerBase extends TileGeneric implements IComputerT
             nbt.putString( NBT_LABEL, label );
         }
         nbt.putBoolean( NBT_ON, on );
-        return super.writeNbt( nbt );
+        super.writeNbt( nbt );
     }
 
     @Override

@@ -51,7 +51,7 @@ public class TurtleSmartItemModel implements BakedModel
 
         identity = AffineTransformation.identity();
         flip = new AffineTransformation( stack.peek()
-            .getModel() );
+            .getPositionMatrix() );
     }
 
     private static class TurtleModelCombination

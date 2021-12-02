@@ -7,6 +7,8 @@
 package dan200.computercraft.shared.util;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -14,6 +16,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.tick.OrderedTick;
 
 /**
  * Represents a block which can be filled with water
@@ -40,7 +43,7 @@ public final class WaterloggableHelpers
     }
 
     /**
-     * Call from {@link net.minecraft.block.Block#updatePostPlacement(BlockState, Direction, BlockState, IWorld, BlockPos, BlockPos)}.
+     * Call from
      *
      * @param state The current state
      * @param world The position of this block
@@ -50,8 +53,9 @@ public final class WaterloggableHelpers
     {
         if( state.get( WATERLOGGED ) )
         {
-            world.getFluidTickScheduler()
-                .schedule( pos, Fluids.WATER, Fluids.WATER.getTickRate( world ) );
+            OrderedTick<Fluid> tick = OrderedTick.create(Fluids.WATER, pos);
+            world.getFluidTickScheduler().scheduleTick(tick);
+            //    .schedule( pos, Fluids.WATER, Fluids.WATER.getTickRate( world ) );
         }
     }
 

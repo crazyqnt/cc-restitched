@@ -78,8 +78,8 @@ public final class MonitorHighlightRenderer
 
         // I wish I could think of a better way to do this
         Matrix4f transform = matrixStack.peek()
-            .getModel();
-        Matrix3f normal = matrixStack.peek().getNormal();
+            .getPositionMatrix();
+        Matrix3f normal = matrixStack.peek().getNormalMatrix();
         if( faces.contains( NORTH ) || faces.contains( WEST ) )
         {
             line( vertexConsumer, transform, normal, 0, 0, 0, UP );

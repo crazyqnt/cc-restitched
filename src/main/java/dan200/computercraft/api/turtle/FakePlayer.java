@@ -249,11 +249,6 @@ public class FakePlayer extends ServerPlayerEntity
     }
 
     @Override
-    public void sendInitialChunkPackets( ChunkPos chunkPos, Packet<?> packet, Packet<?> packet2 )
-    {
-    }
-
-    @Override
     public void sendUnloadChunkPacket( ChunkPos chunkPos )
     {
     }

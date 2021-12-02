@@ -32,6 +32,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.OrderedTick;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -363,17 +364,22 @@ public class TileCable extends TileGeneric implements IPeripheralTile
     public void readNbt( @Nonnull NbtCompound nbt )
     {
         super.readNbt( nbt );
+
+        if (nbt.contains("___clientDescription")) {
+            return; // for client only!
+        }
+
         peripheralAccessAllowed = nbt.getBoolean( NBT_PERIPHERAL_ENABLED );
         peripheral.read( nbt, "" );
     }
 
     @Nonnull
     @Override
-    public NbtCompound writeNbt( NbtCompound nbt )
+    public void writeNbt( NbtCompound nbt )
     {
         nbt.putBoolean( NBT_PERIPHERAL_ENABLED, peripheralAccessAllowed );
         peripheral.write( nbt, "" );
-        return super.writeNbt( nbt );
+        super.writeNbt( nbt );
     }
 
     @Override
@@ -397,9 +403,10 @@ public class TileCable extends TileGeneric implements IPeripheralTile
         if( state != null ) return;
         if( !world.isClient )
         {
-            world.getBlockTickScheduler()
-                .schedule( pos,
-                    getCachedState().getBlock(), 0 );
+            OrderedTick<Block> tick = OrderedTick.create(getCachedState().getBlock(), pos);
+            world.getBlockTickScheduler().scheduleTick(tick);
+                /*.schedule( pos,
+                    getCachedState().getBlock(), 0 );*/
         }
     }
 

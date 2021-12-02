@@ -11,7 +11,8 @@
         "SignBlockEntityAccess",
         "WorldSavePathAccess",
         "MixinServerPlayerInteractionManager",
-        "MixinMatrix4f"
+        "MixinMatrix4f",
+        "MixinBlockEntity"
     ],
     "client": [
         "ChatHudAccess",

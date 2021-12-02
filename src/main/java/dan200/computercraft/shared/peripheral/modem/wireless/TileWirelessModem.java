@@ -12,12 +12,14 @@ import dan200.computercraft.shared.common.TileGeneric;
 import dan200.computercraft.shared.peripheral.modem.ModemPeripheral;
 import dan200.computercraft.shared.peripheral.modem.ModemState;
 import dan200.computercraft.shared.util.TickScheduler;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.OrderedTick;
 
 import javax.annotation.Nonnull;
 
@@ -49,9 +51,10 @@ public class TileWirelessModem extends TileGeneric implements IPeripheralTile
         super.setCachedState( state );
         if( state != null ) return;
         hasModemDirection = false;
-        world.getBlockTickScheduler()
-            .schedule( getPos(),
-                getCachedState().getBlock(), 0 );
+        OrderedTick<Block> tick = OrderedTick.create(getCachedState().getBlock(), getPos());
+        world.getBlockTickScheduler().scheduleTick(tick);
+            /*.schedule( getPos(),
+                getCachedState().getBlock(), 0 );*/
     }
 
     @Override

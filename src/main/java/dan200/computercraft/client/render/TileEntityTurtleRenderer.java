@@ -99,8 +99,7 @@ public class TileEntityTurtleRenderer implements BlockEntityRenderer<TileTurtle>
                 .getRotation() );
             transform.scale( -0.025f, -0.025f, 0.025f );
 
-            Matrix4f matrix = transform.peek()
-                .getModel();
+            Matrix4f matrix = transform.peek().getPositionMatrix();
             int opacity = (int) (mc.options.getTextBackgroundOpacity( 0.25f ) * 255) << 24;
             float width = -font.getWidth( label ) / 2.0f;
             font.draw( label, width, (float) 0, 0x20ffffff, false, matrix, buffers, true, opacity, lightmapCoord );

@@ -27,7 +27,7 @@ public class FakeNetHandler extends ServerPlayNetworkHandler
 {
     public FakeNetHandler( @Nonnull FakePlayer player )
     {
-        super( player.getServerWorld()
+        super( player.getWorld()
             .getServer(), new FakeNetworkManager(), player );
     }
 
@@ -92,22 +92,7 @@ public class FakeNetHandler extends ServerPlayNetworkHandler
     }
 
     @Override
-    public void onStructureBlockUpdate( @Nonnull UpdateStructureBlockC2SPacket packet )
-    {
-    }
-
-    @Override
-    public void onJigsawUpdate( @Nonnull UpdateJigsawC2SPacket packet )
-    {
-    }
-
-    @Override
     public void onJigsawGenerating( JigsawGeneratingC2SPacket packet )
-    {
-    }
-
-    @Override
-    public void onMerchantTradeSelect( SelectMerchantTradeC2SPacket packet )
     {
     }
 
@@ -193,11 +178,6 @@ public class FakeNetHandler extends ServerPlayNetworkHandler
     }
 
     @Override
-    public void onGameMessage( @Nonnull ChatMessageC2SPacket packet )
-    {
-    }
-
-    @Override
     public void onHandSwing( @Nonnull HandSwingC2SPacket packet )
     {
     }
@@ -248,19 +228,10 @@ public class FakeNetHandler extends ServerPlayNetworkHandler
     //    }
 
     @Override
-    public void onSignUpdate( @Nonnull UpdateSignC2SPacket packet )
-    {
-    }
-
-    @Override
     public void onKeepAlive( @Nonnull KeepAliveC2SPacket packet )
     {
     }
 
-    @Override
-    public void onPlayerAbilities( @Nonnull UpdatePlayerAbilitiesC2SPacket packet )
-    {
-    }
 
     @Override
     public void onClientSettings( @Nonnull ClientSettingsC2SPacket packet )

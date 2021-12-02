@@ -116,7 +116,7 @@ public class GuiPrintout extends HandledScreen<ContainerHeldItem>
             .getBufferBuilders()
             .getEntityVertexConsumers();
         Matrix4f matrix = transform.peek()
-            .getModel();
+            .getPositionMatrix();
         drawBorder( matrix, renderer, x, y, getZOffset(), page, pages, book, FULL_BRIGHT_LIGHTMAP );
         drawText( matrix, renderer, x + X_TEXT_MARGIN, y + Y_TEXT_MARGIN, ItemPrintout.LINES_PER_PAGE * page, FULL_BRIGHT_LIGHTMAP, text, colours );
         renderer.draw();
