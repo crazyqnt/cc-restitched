@@ -61,8 +61,8 @@ dependencies {
     include 'com.electronwill.night-config:toml:3.6.3'
     include "me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}"
 
-    modRuntime "me.shedaniel:RoughlyEnoughItems-api-fabric:7.0.342"
-    modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:7.0.342"
+    modRuntime "me.shedaniel:RoughlyEnoughItems-api-fabric:7.0.346"
+    modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:7.0.346"
 }
 
 processResources {

@@ -2,7 +2,7 @@
     "schemaVersion": 1,
     "id": "computercraft",
     "name": "CC:Restitched",
-    "version": "${version}",
+    "version": "1.97.91",
     "description": "CC: Tweaked for Fabric.",
     "license": "ComputerCraft Public License",
     "icon": "assets/computercraft/pack.png",
@@ -20,9 +20,9 @@
 		"Toad-Dev"
     ],
     "depends": {
-        "fabricloader": ">=0.11.3",
+        "fabricloader": ">=0.12.8",
         "fabric": "*",
-        "minecraft": "1.18",
+        "minecraft": "1.18.1",
         "java": ">=16"
     },
     "suggests": {
